@@ -3,9 +3,13 @@ package cursojava.execultavel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import cursojava.classes.Aluno;
+import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
 
 public class PrimeiraClasseJava {
@@ -18,7 +22,7 @@ public class PrimeiraClasseJava {
 		String login = JOptionPane.showInputDialog("Digite o login: ");
 		String senha = JOptionPane.showInputDialog("Digite a senha: ");
 		
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 		
 			List<Aluno> alunos = new ArrayList<Aluno>();
 			
@@ -133,6 +137,8 @@ public class PrimeiraClasseJava {
 				
 			}
 			
+		} else {
+			JOptionPane.showMessageDialog(null, "Acesso Negado!");
 		}
 		
 	}
